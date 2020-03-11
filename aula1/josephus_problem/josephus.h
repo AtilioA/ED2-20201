@@ -9,7 +9,7 @@
 typedef struct node
 {
     int item;
-    struct node *prox;
+    struct node *prev, *next;
 } Node;
 
 typedef struct linked_list
@@ -20,13 +20,15 @@ typedef struct linked_list
 
 void create_list(LinkedList *list);
 LinkedList *initialize_list(int N);
+LinkedList* init_josefo(int n);
 int is_empty_list(LinkedList *list);
 int is_valid_list(LinkedList *list);
 void print_list(LinkedList *list);
 void insert_list(int x, LinkedList *list);
+void delete_from_list(LinkedList *list, Node *removedNode);
+int select_leader(LinkedList *list, int m);
 void remove_list(Node *p, LinkedList *list, int *item);
 Node *remove_one(LinkedList *list, Node *initialNode, int M);
-void delete_from_list(LinkedList *list, int person);
 void pick_leader(LinkedList *list, int M);
 void destroy_list(LinkedList *list);
 
