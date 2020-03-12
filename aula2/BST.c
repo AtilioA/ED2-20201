@@ -74,6 +74,54 @@ int insert_BST(BST *root, int value)
     }
 }
 
+void preOrder_BST(BST *root)
+{
+    if (root != NULL)
+    {
+        printf("%d\n", (*root)->info);
+        if((*root)->left != NULL)
+        {
+            preOrder_BST(&((*root)->left));
+        }
+        if((*root)->right != NULL)
+        {
+            preOrder_BST(&((*root)->right));
+        }
+    }
+}
+
+void inOrder_BST(BST *root)
+{
+    if (root != NULL)
+    {
+        if((*root)->left != NULL)
+        {
+            inOrder_BST(&((*root)->left));
+        }
+        printf("%d\n", (*root)->info);
+        if((*root)->right != NULL)
+        {
+            inOrder_BST(&((*root)->right));
+        }
+    }
+}
+
+void postOrder_BST(BST *root)
+{
+    if (root != NULL)
+    {
+        if((*root)->left != NULL)
+        {
+            postOrder_BST(&((*root)->left));
+        }
+        if((*root)->right != NULL)
+        {
+            postOrder_BST(&((*root)->right));
+        }
+        printf("%d\n", (*root)->info);
+    }
+}
+
 int consult_BST(BST* root, int value)
 {
     Node *aux = (*root);
