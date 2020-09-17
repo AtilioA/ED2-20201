@@ -5,7 +5,7 @@
 typedef struct node
 {
     int label;
-    bool marked;
+    unsigned marked;
 } Node;
 
 Node *init_sieve(int size);
