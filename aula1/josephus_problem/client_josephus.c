@@ -14,14 +14,11 @@ int main(int argc, char *argv[])
     // printf("\nPrinting list:\n");
     // print_list(circleOfPeople);
 
-    // printf("Removing...\n");
-    // pick_leader(circleOfPeople, M);
-    // Node *leaderNode = delete_from_list(circleOfPeople, circleOfPeople->last);
+    printf("Removing persons from the circle...\n");
     int leader = select_leader(circleOfPeople, M);
-    printf("\n%i\n", leader);
-    // print_list(circleOfPeople);
+    printf("\nLeader: %i.\n", leader);
 
-    // printf("\nDestroying list...\n");
+    printf("\nDestroying list...\n");
     destroy_list(circleOfPeople);
-    // print_list(circleOfPeople);
+    print_list(circleOfPeople);
 }

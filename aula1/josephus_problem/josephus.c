@@ -37,18 +37,6 @@ LinkedList *initialize_list(int N)
     return list;
 }
 
-int is_valid_list(LinkedList *list)
-{
-    if (list->first != NULL)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
 void delete_from_list(LinkedList *list, Node *removedNode){
     if (list->first == list->last)
     {
@@ -79,7 +67,7 @@ void print_list(LinkedList *list)
 {
     Node *current = list->first;
 
-    printf("List size: %i\n", list->size);
+    printf("List size: %i.\n", list->size);
 
     for (int i = 0; i < list->size; i++)
     {
