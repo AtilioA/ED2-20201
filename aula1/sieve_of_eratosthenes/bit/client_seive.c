@@ -1,23 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "sieve.h"
+
+#define BYTE 8
 
 int main(int argc, char *argv[])
 {
     int N = atoi(argv[1]);
-    Node *listOfNumbers;
+    uint8_t *bitArray;
+    bitArray = malloc((N / BYTE + 1) * sizeof(uint8_t));
 
     printf("N = %i:\n\n", N);
-    listOfNumbers = init_sieve(N);
+    init_sieve(bitArray, N);
 
-    // printf("\nPrinting list:\n");
-    // print_list(listOfNumbers, N);
+    mark_primes(bitArray, N);
+    print_primes(bitArray, N);
 
-    printf("\nMarking primes...\n");
-    mark_primes(listOfNumbers, N);
-    printf("\nPrinting primes:\n");
-    print_primes(listOfNumbers, N);
-
-    printf("\nDestroying list...\n");
-    destroy_sieve(listOfNumbers);
+    free(bitArray);
 }

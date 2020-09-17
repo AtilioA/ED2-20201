@@ -1,24 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <stdbool.h>
 #include "sieve.h"
 
-Node *init_sieve(int size)
+#define BYTE 8
+
+void set_bit(uint8_t *bitArray, int n)
 {
-    Node *node = (Node *)malloc((size - 1) * sizeof(Node));
-
-    for (int i = 2; i <= size; i++)
-    {
-        node[i - 2].label = i;
-        node[i - 2].marked = 0;
-    }
-
-    // printf("Initializated list.\n");
-
-    return node;
+    bitArray[n / BYTE] = bitArray[n / BYTE] | (1U << n % BYTE);
 }
 
-void mark_primes(Node *list, int size)
+void clear_bit(uint8_t *bitArray, int n)
+{
+    bitArray[n / BYTE] = bitArray[n / BYTE] & ~(1U << n % BYTE);
+}
+
+void init_sieve(uint8_t *bitArray, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        set_bit(bitArray, i);
+    }
+}
+
+void mark_primes(uint8_t *bitArray, int size)
 {
     for (int i = 2; i <= size / 2; i++)
     {
@@ -26,32 +32,19 @@ void mark_primes(Node *list, int size)
         {
             if ((i * j) <= size)
             {
-                list[(i * j) - 2].marked = 1;
+                clear_bit(bitArray, (i * j) - 2);
             }
         }
     }
 }
 
-void print_list(Node *list, int size)
+void print_primes(uint8_t *bitArray, int size)
 {
-    for (int i = 0; i < size - 1; i++)
+    for (int i = 2; i < size; i++)
     {
-        printf("%i\n", list[i].label);
-    }
-}
-
-void print_primes(Node *list, int size)
-{
-    for (int i = 0; i < size - 1; i++)
-    {
-        if (!list[i].marked)
+        if ((bitArray[(i - 2) / 8] >> (i - 2) % 8) & 0x01)
         {
-            printf("%i is a prime number.\n", list[i].label);
+            printf("%i is a prime number.\n", i);
         }
     }
-}
-
-void destroy_sieve(Node *node)
-{
-    free(node);
 }
