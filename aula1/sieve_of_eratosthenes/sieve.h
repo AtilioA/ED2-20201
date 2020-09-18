@@ -2,16 +2,10 @@
 #define _SIEVE_H_
 #include <stdbool.h>
 
-typedef struct node
-{
-    int label;
-    bool marked;
-} Node;
-
-Node *init_sieve(int size);
-void print_list(Node *list, int size);
-void mark_primes(Node *list, int size);
-void print_primes(Node *list, int size);
-void destroy_sieve(Node *node);
+bool *init_sieve(int size);
+void print_array(bool *array, int size);
+void mark_primes(bool *array, int size);
+void print_primes(bool *array, int size);
+void destroy_sieve(bool *array);
 
 #endif

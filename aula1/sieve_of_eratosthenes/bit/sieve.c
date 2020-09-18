@@ -6,6 +6,11 @@
 
 #define BYTE 8
 
+bool is_set(uint8_t *bitArray, int n)
+{
+    return (bitArray[(n - 2) / 8] >> (n - 2) % 8) & 0x01;
+}
+
 void set_bit(uint8_t *bitArray, int n)
 {
     bitArray[n / BYTE] = bitArray[n / BYTE] | (1U << n % BYTE);
@@ -28,11 +33,14 @@ void mark_primes(uint8_t *bitArray, int size)
 {
     for (int i = 2; i <= size / 2; i++)
     {
-        for (int j = 2; (i * j) <= size; j++)
+        if (is_set(bitArray, i))
         {
-            if ((i * j) <= size)
+            for (int j = 2; (i * j) <= size; j++)
             {
-                clear_bit(bitArray, (i * j) - 2);
+                if ((i * j) <= size)
+                {
+                    clear_bit(bitArray, (i * j) - 2);
+                }
             }
         }
     }

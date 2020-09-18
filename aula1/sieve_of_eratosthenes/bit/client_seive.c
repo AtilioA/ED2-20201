@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
     uint8_t *bitArray;
     bitArray = malloc((N / BYTE + 1) * sizeof(uint8_t));
 
-    printf("N = %i:\n\n", N);
+    // printf("N = %i:\n\n", N);
     init_sieve(bitArray, N);
 
     mark_primes(bitArray, N);
-    print_primes(bitArray, N);
+    // print_primes(bitArray, N);
 
     free(bitArray);
 }
