@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "sieve.h"
 
-int *init_sieve(int size)
+bool *init_sieve(int size)
 {
-    int *array = (int *)malloc(sizeof(int) * size);
+    bool *array = (bool *)malloc(sizeof(bool) * size);
 
     for (int i = 0; i < size; i++)
     {
-        array[i] = 1;
+        array[i] = true;
     }
 
     return array;
 }
 
-void mark_primes(int *array, int size)
+void mark_primes(bool *array, int size)
 {
     for (int i = 2; i <= size / 2; i++)
     {
@@ -24,14 +25,14 @@ void mark_primes(int *array, int size)
             {
                 if ((i * j) <= size)
                 {
-                    array[(i * j) - 2] = 0;
+                    array[(i * j) - 2] = false;
                 }
             }
         }
     }
 }
 
-void print_array(int *array, int size)
+void print_array(bool *array, int size)
 {
     for (int i = 0; i < size - 1; i++)
     {
@@ -39,7 +40,7 @@ void print_array(int *array, int size)
     }
 }
 
-void print_primes(int *array, int size)
+void print_primes(bool *array, int size)
 {
     for (int i = 0; i < size - 1; i++)
     {
