@@ -1,0 +1,8 @@
+bool;bit;
+bytes alocados (10000 numeros);10,000;1,251;
+tempo: 1000 números;0m0,001s;0m0,000s;
+tempo: 10000 números;0m0,001s;0m0,000s;
+tempo: 100000 números;0m0,002s;0m0,002s;
+tempo: 1000000 números;0m0,018s;0m0,022s;
+tempo: 10000000 números;0m0,187s;0m0,246s;
+tempo: 100000000 números;
