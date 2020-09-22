@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     for (i = 0; i < N; i++)
     {
-        data[i] = rand();
+        data[i] = rand() % 1000;
     }
 
     BST *root = create_BST();
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     }
     printf("Inserted data into binary tree.\n");
 
-    inOrder_BST(root);
+    rec_inOrder_BST(root, inOrder);
     printf("\n");
 
     int height = calculate_BST_height(root);
