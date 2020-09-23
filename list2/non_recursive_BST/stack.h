@@ -20,6 +20,7 @@ Item *pop(Stack *stack);
 void print_stack(Stack *stack, int type);
 void delete_stack(Stack *stack);
 
+void *get_element(Item *item);
 Item *stack_head(Stack *stack);
 int stack_height(Stack *stack);
 

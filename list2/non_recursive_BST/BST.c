@@ -1,4 +1,5 @@
 #include "BST.h"
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -129,17 +130,29 @@ void preOrder(BST *root)
 
 void rec_preOrder_BST(BST *root, void (*visit)(BST *))
 {
+    Node *nodePointer = *root;
     if (root != NULL)
     {
-        visit(root);
-        if ((*root)->left != NULL)
+        Stack *stack = create_stack();
+        push(stack, nodePointer);
+
+        while (stack_height(stack) > 0)
         {
-            rec_preOrder_BST(&((*root)->left), visit);
+            Item *item = pop(stack);
+            nodePointer = get_element(item);
+            visit(&nodePointer);
+            free(item);
+
+            if (nodePointer->right != NULL)
+            {
+                push(stack, nodePointer->right);
+            }
+            if (nodePointer->left != NULL)
+            {
+                push(stack, nodePointer->left);
+            }
         }
-        if ((*root)->right != NULL)
-        {
-            rec_preOrder_BST(&((*root)->right), visit);
-        }
+        delete_stack(stack);
     }
 }
 
@@ -148,41 +161,66 @@ void inOrder(BST *root)
     printf("Printing inorder: %i.\n", (*root)->info);
 }
 
-void rec_inOrder_BST(BST *root, void (*visit)(BST *))
-{
-    if (root != NULL)
-    {
-        if ((*root)->left != NULL)
-        {
-            rec_inOrder_BST(&((*root)->left), visit);
-        }
-        visit(root);
-        if ((*root)->right != NULL)
-        {
-            rec_inOrder_BST(&((*root)->right), visit);
-        }
-    }
-}
-
 void postOrder(BST *root)
 {
     printf("Printing postorder: %i.\n", (*root)->info);
 }
 
+void rec_inOrder_BST(BST *root, void (*visit)(BST *))
+{
+    Node *nodePointer = *root;
+    Stack *stack = create_stack();
+    while (stack_height(stack) > 0 || nodePointer != NULL)
+    {
+        if (nodePointer != NULL)
+        {
+            push(stack, nodePointer);
+            nodePointer = (nodePointer)->left;
+        }
+        else
+        {
+            Item *item = pop(stack);
+            nodePointer = get_element(item);
+            (*visit)(&nodePointer);
+            free(item);
+            nodePointer = (nodePointer)->right;
+        }
+    }
+    delete_stack(stack);
+}
+
 void rec_postOrder_BST(BST *root, void (*visit)(BST *))
 {
-    if (root != NULL)
+    Node *nodePointer = *root;
+    Stack *stack = create_stack();
+    Node *lastNodeVisited = NULL;
+
+    while (stack_height(stack) > 0 || nodePointer != NULL)
     {
-        if ((*root)->left != NULL)
+        if (nodePointer != NULL)
         {
-            rec_postOrder_BST(&((*root)->left), visit);
+            push(stack, nodePointer);
+            nodePointer = nodePointer->left;
         }
-        if ((*root)->right != NULL)
+        else
         {
-            rec_postOrder_BST(&((*root)->right), visit);
+            Item *stackHead = stack_head(stack);
+            Node *nodeHead = get_element(stackHead);
+            if (nodeHead->right != NULL && lastNodeVisited != nodeHead->right)
+            {
+                nodePointer = nodeHead->right;
+            }
+            else
+            {
+                (*visit)(&nodeHead);
+                Item *item = pop(stack);
+                lastNodeVisited = get_element(item);
+                free(item);
+            }
         }
-        visit(root);
     }
+
+    delete_stack(stack);
 }
 
 int consult_BST(BST *root, int value)

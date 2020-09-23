@@ -63,6 +63,7 @@ void print_stack(Stack *stack, int type)
 {
     Item *itemPointer = stack_head(stack);
 
+    printf("Stack: ");
     for (int i = 0; i < stack_height(stack) - 1; i++)
     {
         if (type == INT)
@@ -77,6 +78,7 @@ void print_stack(Stack *stack, int type)
         int *value = itemPointer->element;
         printf("%i\n", *value);
     }
+    printf("Height: %i\n", stack->height);
 }
 
 void delete_stack(Stack *stack)
@@ -91,6 +93,10 @@ void delete_stack(Stack *stack)
     }
 
     free(stack);
+}
+
+void *get_element(Item *item) {
+    return item->element;
 }
 
 Item *stack_head(Stack *stack)
