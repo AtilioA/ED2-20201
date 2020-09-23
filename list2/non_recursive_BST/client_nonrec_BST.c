@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-// #include "BST.h"
+#include "BST.h"
 #include "stack.h"
 
 int main(int argc, char *argv[])
 {
-    Stack *stack = create_stack();
+    BST *root = create_BST();
 
     int N = atoi(argv[1]), i = 0, data[N];
     srand(time(NULL));
@@ -18,13 +18,15 @@ int main(int argc, char *argv[])
         printf("%i ", data[i]);
     }
 
-    printf("\nStack:\n");
+    printf("\nTree:\n");
     for (i = 0; i < N; i++)
     {
-        push(stack, &data[i]);
+        insert_BST(root, data[i]);
     }
 
-    print_stack(stack, INT);
+    rec_preOrder_BST(root, preOrder);
+
+    free_BST(root);
 
     return 0;
 }
