@@ -18,30 +18,32 @@ Queue *create_queue()
     Queue *queue = malloc(sizeof(Queue));
 
     queue->first = NULL;
-    queue->last = queue->first;
+    queue->last = NULL;
     queue->size = 0;
 
     return queue;
 }
 
-void queue_insert(Queue *queue, void *element)
+void enqueue(Queue *queue, void *element)
 {
+    Item *item = malloc(sizeof(Item));
+    item->next = NULL;
+
     if (queue_first(queue) == NULL)
     {
-        Item *item = malloc(sizeof(Item));
         item->element = element;
-        item->next = NULL;
 
         queue->first = item;
+        queue->last = queue->first;
     }
     else
     {
-        Item *item = malloc(sizeof(Item));
         item->element = element;
-        item->next = NULL;
 
         queue->last->next = item;
+        queue->last = queue->last->next;
     }
+
     queue->size++;
 }
 
@@ -63,7 +65,7 @@ void print_queue(Queue *queue, int type)
     Item *itemPointer = queue_first(queue);
 
     printf("Queue: ");
-    for (int i = 0; i < queue_size(queue) - 1; i++)
+    for (int i = 0; i < queue_length(queue) - 1; i++)
     {
         if (type == INT)
         {
@@ -84,7 +86,7 @@ void delete_queue(Queue *queue)
 {
     Item *itemPointer = queue_first(queue);
 
-    for (int i = 0; i < queue_size(queue); i++)
+    for (int i = 0; i < queue_length(queue); i++)
     {
         queue->first = queue_first(queue)->next;
         free(itemPointer);
@@ -104,7 +106,7 @@ Item *queue_first(Queue *queue)
     return queue->first;
 }
 
-int queue_size(Queue *queue)
+int queue_length(Queue *queue)
 {
     return queue->size;
 }

@@ -14,7 +14,7 @@ enum elementTypes
 
 Queue *create_queue();
 
-void queue_insert(Queue *queue, void *item);
+void enqueue(Queue *queue, void *item);
 Item *dequeue(Queue *queue);
 
 void print_queue(Queue *queue, int type);
@@ -22,6 +22,6 @@ void delete_queue(Queue *queue);
 
 void *get_element(Item *item);
 Item *queue_first(Queue *queue);
-int queue_size(Queue *queue);
+int queue_length(Queue *queue);
 
 #endif

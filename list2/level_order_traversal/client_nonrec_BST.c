@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "BST.h"
 #include "queue.h"
 
 int main(int argc, char *argv[])
 {
-    Queue *queue = create_queue();
+    BST *root = create_BST();
 
     int N = atoi(argv[1]), i = 0, data[N];
     srand(time(NULL));
@@ -17,14 +18,15 @@ int main(int argc, char *argv[])
         printf("%i ", data[i]);
     }
 
+    printf("\nTree:\n");
     for (i = 0; i < N; i++)
     {
-        queue_insert(queue, &data[i]);
+        insert_BST(root, data[i]);
     }
-    
-    print_queue(queue, INT);
 
-    delete_queue(queue);
+    levelOrder_traversal(root, levelOrder_print);
+
+    free_BST(root);
 
     return 0;
 }
