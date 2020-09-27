@@ -50,7 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
 *.out
 Makefile
 *.sh
 settings.json
+.zip
