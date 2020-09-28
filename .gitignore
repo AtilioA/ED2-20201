@@ -55,4 +55,4 @@ dkms.conf
 Makefile
 *.sh
 settings.json
-.zip
+*.zip
