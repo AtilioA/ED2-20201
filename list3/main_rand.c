@@ -6,7 +6,8 @@
 
 extern void sort(Item *a, int lo, int hi);
 
-int main(int argc, char *argv[])
+// Rename to main
+int main2(int argc, char *argv[])
 {
     int N = atoi(argv[1]), tam_array = N;
     Item *array;
