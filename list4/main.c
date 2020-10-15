@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -5,8 +6,7 @@
 
 extern void sort(Item *a, int lo, int hi);
 
-// Rename to main
-int main2(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int N = atoi(argv[1]), tam_array = N;
     Item *array;
@@ -22,7 +22,7 @@ int main2(int argc, char *argv[])
     }
 
     printf("\nOrdered array:\n");
-    sort(array, 0, N);
+    sort(array, 0, N - 1);
 
     for (int i = 0; i < N; i++)
     {
