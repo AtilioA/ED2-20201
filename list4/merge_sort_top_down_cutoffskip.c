@@ -1,5 +1,6 @@
-#include "item.h"
 #include <stdlib.h>
+#include "item.h"
+#include "insertion_sort.h"
 
 void merge(Item *a, Item *aux, int lo, int mid, int hi)
 {
@@ -32,13 +33,19 @@ void merge(Item *a, Item *aux, int lo, int mid, int hi)
 
 void merge_sort(Item *a, Item *aux, int lo, int hi)
 {
-    if (hi > lo)
+    int CUTOFF = hi;
+
+    if (hi <= lo + CUTOFF - 1)
     {
-        int mid = lo + (hi - lo) / 2; // Avoid overflow.
-        merge_sort(a, aux, lo, mid);
-        merge_sort(a, aux, mid + 1, hi);
-        merge(a, aux, lo, mid, hi);
+        insert_sort(a, lo, hi);
+        return;
     }
+    int mid = lo + (hi - lo) / 2;
+    merge_sort(a, aux, lo, mid);
+    merge_sort(a, aux, mid + 1, hi);
+    if (!less(a[mid + 1], a[mid]))
+        return;
+    merge(a, aux, lo, mid, hi);
 }
 
 void sort(Item *a, int lo, int hi)
