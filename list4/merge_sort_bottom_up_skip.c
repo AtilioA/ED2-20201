@@ -1,6 +1,9 @@
 #include "item.h"
 #include <stdlib.h>
 
+#define SZ2 (sz + sz)
+#define MIN(X, Y) ((X < Y) ? (X) : (Y))
+
 void merge(Item *a, Item *aux, int lo, int mid, int hi)
 {
     for (int k = lo; k <= hi; k++)
@@ -34,7 +37,7 @@ void merge_sort(Item *a, Item *aux, int lo, int hi)
 {
     if (hi > lo)
     {
-        int mid = lo + (hi - lo) / 2;
+        int mid = lo + (hi - lo) / 2; // Avoid overflow.
         merge_sort(a, aux, lo, mid);
         merge_sort(a, aux, mid + 1, hi);
         if (!less(a[mid + 1], a[mid]))
@@ -47,9 +50,16 @@ void merge_sort(Item *a, Item *aux, int lo, int hi)
 
 void sort(Item *a, int lo, int hi)
 {
-    int n = (hi - lo) + 1;
-    Item *aux = malloc(n * sizeof(Item));
-    merge_sort(a, aux, lo, hi);
-
+    int N = (hi - lo) + 1;
+    int y = N - 1;
+    Item *aux = malloc(N * sizeof(Item));
+    for (int sz = 1; sz < N; sz = SZ2)
+    {
+        for (int lo = 0; lo < N - sz; lo += SZ2)
+        {
+            int x = lo + SZ2 - 1;
+            merge(a, aux, lo, lo + sz - 1, MIN(x, y));
+        }
+    }
     free(aux);
 }

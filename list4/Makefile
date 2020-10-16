@@ -22,6 +22,27 @@ top_down: merge_sort_top_down.o main.o
 merge_sort_top_down.o: merge_sort_top_down.c item.h
 	gcc -c merge_sort_top_down.c
 
+bottom_up: merge_sort_bottom_up.o main.o
+	gcc -o bottom_up.out merge_sort_bottom_up.o main.o
+
+merge_sort_bottom_up.o: merge_sort_bottom_up.c item.h
+	gcc -c merge_sort_bottom_up.c
+
+bottom_up_cutoff: merge_sort_bottom_up_cutoff.o insertion_sort.o main.o
+	gcc -o bottom_up_cutoff.out merge_sort_bottom_up_cutoff.o insertion_sort.o main.o
+
+merge_sort_bottom_up_cutoff.o: merge_sort_bottom_up_cutoff.c item.h
+	gcc -c merge_sort_bottom_up_cutoff.c
+
+bottom_up_skip: merge_sort_bottom_up_skip.o main.o
+	gcc -o bottom_up_skip.out merge_sort_bottom_up_skip.o main.o
+
+merge_sort_bottom_up_skip.o: merge_sort_bottom_up_skip.c item.h
+	gcc -c merge_sort_bottom_up_skip.c
+
+insertion_sort.o: insertion_sort.c item.h
+	gcc -c insertion_sort.c
+
 main.o: main.c item.h
 	gcc -c main.c
 
