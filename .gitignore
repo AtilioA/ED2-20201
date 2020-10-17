@@ -51,7 +51,7 @@ Mkfile.old
 dkms.conf
 
 *.out
-*.sh
+# *.sh
 settings.json
 *.zip
 *.txt
