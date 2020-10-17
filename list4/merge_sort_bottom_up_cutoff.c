@@ -1,5 +1,6 @@
-#include "item.h"
 #include <stdlib.h>
+#include "item.h"
+#include "insertion_sort.h"
 
 #define SZ2 (sz + sz)
 #define MIN(X, Y) ((X < Y) ? (X) : (Y))
