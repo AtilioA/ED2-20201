@@ -33,8 +33,8 @@ void merge(Item *a, Item *aux, int lo, int mid, int hi)
 
 void merge_sort(Item *a, Item *aux, int lo, int hi)
 {
-    int CUTOFF = hi;
-    
+    int CUTOFF = 5;
+
     if (hi <= lo + CUTOFF - 1)
     {
         insert_sort(a, lo, hi);

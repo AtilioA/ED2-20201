@@ -35,14 +35,14 @@ void merge(Item *a, Item *aux, int lo, int mid, int hi)
 
 void merge_sort(Item *a, Item *aux, int lo, int hi)
 {
-    int CUTOFF = hi;
+    int CUTOFF = 5;
 
     if (hi <= lo + CUTOFF - 1)
     {
         insert_sort(a, lo, hi);
         return;
     }
-    
+
     int mid = lo + (hi - lo) / 2; // Avoid overflow.
     merge_sort(a, aux, lo, mid);
     merge_sort(a, aux, mid + 1, hi);
