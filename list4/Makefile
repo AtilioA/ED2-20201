@@ -1,3 +1,5 @@
+all: insertion_sort.o top_down_cutoffskip top_down_skip top_down_cutoff top_down bottom_up bottom_up_cutoff bottom_up_skip
+
 top_down_cutoffskip: merge_sort_top_down_cutoffskip.o insertion_sort.o main.o
 	gcc -o cutoffskip.out merge_sort_top_down_cutoffskip.o insertion_sort.o main.o
 
