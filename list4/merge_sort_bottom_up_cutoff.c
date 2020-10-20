@@ -1,5 +1,6 @@
-#include "item.h"
 #include <stdlib.h>
+#include "item.h"
+#include "insertion_sort.h"
 
 #define SZ2 (sz + sz)
 #define MIN(X, Y) ((X < Y) ? (X) : (Y))
@@ -35,14 +36,22 @@ void merge(Item *a, Item *aux, int lo, int mid, int hi)
 
 void merge_sort(Item *a, Item *aux, int lo, int hi)
 {
+<<<<<<< HEAD
     int CUTOFF = hi;
+=======
+    int CUTOFF = 5;
+>>>>>>> b31749e9ed72ceffa75afd621aab9c2e15a9a0ee
 
     if (hi <= lo + CUTOFF - 1)
     {
         insert_sort(a, lo, hi);
         return;
     }
-    
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> b31749e9ed72ceffa75afd621aab9c2e15a9a0ee
     int mid = lo + (hi - lo) / 2; // Avoid overflow.
     merge_sort(a, aux, lo, mid);
     merge_sort(a, aux, mid + 1, hi);
@@ -63,4 +72,8 @@ void sort(Item *a, int lo, int hi)
         }
     }
     free(aux);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b31749e9ed72ceffa75afd621aab9c2e15a9a0ee
