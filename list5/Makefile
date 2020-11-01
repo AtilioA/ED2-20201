@@ -30,8 +30,8 @@ bottom_up: quick_sort_bottom_up.o stack.o main.o
 quick_sort_bottom_up.o: quick_sort_bottom_up.c item.h
 	gcc -c quick_sort_bottom_up.c
 
-bottom_up_cutoff_median: quick_sort_bottom_up_cutoff_median.o main.o
-	gcc -o bottom_up_cutoff_median.out quick_sort_bottom_up_cutoff_median.o main.o
+bottom_up_cutoff_median: quick_sort_bottom_up_cutoff_median.o stack.o insertion_sort.o main.o
+	gcc -o bottom_up_cutoff_median.out quick_sort_bottom_up_cutoff_median.o stack.o insertion_sort.o main.o
 
 quick_sort_bottom_up_cutoff_median.o: quick_sort_bottom_up_cutoff_median.c item.h
 	gcc -c quick_sort_bottom_up_cutoff_median.c
