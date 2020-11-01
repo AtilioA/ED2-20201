@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
     sort(array, 0, N);
 
-    // print_array(array, N);
+    print_array(array, N);
 
     free(array);
 }
