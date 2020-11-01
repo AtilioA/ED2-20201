@@ -24,6 +24,12 @@ top_down: quick_sort_top_down.o main.o
 quick_sort_top_down.o: quick_sort_top_down.c item.h
 	gcc -c quick_sort_top_down.c
 
+bottom_up: quick_sort_bottom_up.o stack.o main.o
+	gcc -o bottom_up.out quick_sort_bottom_up.o stack.o  main.o
+
+quick_sort_bottom_up.o: quick_sort_bottom_up.c item.h
+	gcc -c quick_sort_bottom_up.c
+
 bottom_up_cutoff_median: quick_sort_bottom_up_cutoff_median.o main.o
 	gcc -o bottom_up_cutoff_median.out quick_sort_bottom_up_cutoff_median.o main.o
 
@@ -32,6 +38,9 @@ quick_sort_bottom_up_cutoff_median.o: quick_sort_bottom_up_cutoff_median.c item.
 
 insertion_sort.o: insertion_sort.c item.h
 	gcc -c insertion_sort.c
+
+stack.o: stack.c item.h
+	gcc -c stack.c
 
 main.o: main.c item.h
 	gcc -c main.c
