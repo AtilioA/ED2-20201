@@ -6,28 +6,28 @@
 
 extern void sort(Item *a, int lo, int hi);
 
-int main(int argc, char *argv[])
+void print_array(Item *a, int length)
 {
-    int N = atoi(argv[1]), tam_array = N;
-    Item *array;
-    array = (Item *)malloc(sizeof(Item) * tam_array);
+    for (int i = 0; i < length; i++)
+    {
+        printf("%d ", a[i]);
+    }
+    putchar('\n');
+}
 
-    srand(time(NULL));
+int main(int argc, char **argv)
+{
+    int N = atoi(argv[1]);
+    Item *array = (Item *)malloc(sizeof(Item) * N);
 
-    printf("Numbers (keys):\n");
     for (int i = 0; i < N; i++)
     {
-        array[i] = (Item)rand() % 1000;
-        printf("%i ", key(array[i]));
+        scanf("%d", &array[i]);
     }
 
-    printf("\nOrdered array:\n");
     sort(array, 0, N);
 
-    for (int i = 0; i < N; i++)
-    {
-        printf("%i ", key(array[i]));
-    }
+    // print_array(array, N);
 
-    return 0;
+    free(array);
 }
